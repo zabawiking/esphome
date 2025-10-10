@@ -400,8 +400,8 @@ void OpenthermHub::handle_protocol_error_() {
 
 void OpenthermHub::handle_timeout_error_() {
   ESP_LOGW(TAG, "Timeout while waiting for response from device");
-
-
+  ESP_LOGD(TAG, "Set NAN value for data id %d", this->last_request_.id);
+  
   switch (this->last_request_.id) {
     OPENTHERM_SENSOR_MESSAGE_HANDLERS(OPENTHERM_MESSAGE_RESPONSE_MESSAGE, OPENTHERM_MESSAGE_TIMEOUT_ENTITY, ,
                                       OPENTHERM_MESSAGE_RESPONSE_POSTSCRIPT, )
